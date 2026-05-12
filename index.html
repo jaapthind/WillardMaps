@@ -3,117 +3,364 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Willard Advanced Virtual Tour | Project Alpha</title>
+    <title>Willard Strategic Recon | Alpha Protocol</title>
     
     <!-- Pannellum Core CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
 
     <style>
-        /* Cyber-Noir UI Design */
+        :root {
+            --neon-blue: #00f2ff;
+            --neon-pink: #ff00ea;
+            --glass-bg: rgba(5, 5, 5, 0.8);
+            --border-glow: 0 0 15px rgba(0, 242, 255, 0.5);
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
+            width: 100%;
             overflow: hidden;
-            background-color: #050505;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000;
+            font-family: var(--font-main);
         }
 
+        /* --- SPLASH SCREEN --- */
+        #splash-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #0a0a0a 0%, #000 100%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.5s ease-out, visibility 1.5s;
+        }
+
+        #splash-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: grid-scroll 20s linear infinite;
+        }
+
+        @keyframes grid-scroll {
+            from { background-position: 0 0; }
+            to { background-position: 0 500px; }
+        }
+
+        .glitch-title {
+            color: var(--neon-blue);
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            margin-bottom: 30px;
+            text-shadow: var(--border-glow);
+            position: relative;
+        }
+
+        .enter-btn {
+            padding: 20px 60px;
+            background: transparent;
+            border: 2px solid var(--neon-blue);
+            color: var(--neon-blue);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+            box-shadow: var(--border-glow);
+            backdrop-filter: blur(5px);
+        }
+
+        .enter-btn:hover {
+            background: var(--neon-blue);
+            color: #000;
+            box-shadow: 0 0 30px var(--neon-blue);
+        }
+
+        /* --- ADVANCED HUD ELEMENTS --- */
+        #main-hud {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            z-index: 100;
+            color: var(--neon-blue);
+            pointer-events: none;
+        }
+
+        .hud-box {
+            background: var(--glass-bg);
+            border-left: 5px solid var(--neon-pink);
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--border-glow);
+            margin-bottom: 15px;
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 90% 100%, 0 100%);
+        }
+
+        .hud-label {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-bottom: 5px;
+        }
+
+        .hud-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        #top-right-data {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            z-index: 100;
+            text-align: right;
+            color: var(--neon-blue);
+        }
+
+        /* --- SCANLINE EFFECT --- */
+        .scanlines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%,
+                rgba(0, 0, 0, 0.25) 50%
+            ), linear-gradient(
+                90deg,
+                rgba(255, 0, 0, 0.06),
+                rgba(0, 255, 0, 0.02),
+                rgba(0, 0, 255, 0.06)
+            );
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        /* --- PANORAMA STYLING --- */
         #panorama-container {
             width: 100%;
             height: 100vh;
-            border: 2px solid #00f2ff; /* Hyper-Grid blue border */
-            box-sizing: border-box;
+            border: 1px solid rgba(0, 242, 255, 0.2);
         }
 
-        /* Custom UI HUD */
-        #hud {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 100;
-            color: #00f2ff;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 15px;
-            border-left: 4px solid #ff00ea; /* Rainbow Glass accent */
-            pointer-events: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+        .pnlm-compass {
+            right: 30px !important;
+            bottom: 30px !important;
+            color: var(--neon-blue) !important;
         }
 
-        /* Custom Hotspot Styling */
-        .pnlm-hotspot-base {
-            cursor: pointer;
-        }
-        
+        /* --- CUSTOM TOOLTIPS --- */
         .custom-tooltip span {
             visibility: hidden;
             position: absolute;
-            border-radius: 3px;
-            background-color: #000;
-            color: #fff;
-            text-align: center;
-            max-width: 200px;
-            padding: 5px 10px;
-            margin-left: -220px;
-            cursor: default;
+            border: 1px solid var(--neon-blue);
+            background-color: rgba(0, 0, 0, 0.9);
+            color: var(--neon-blue);
+            padding: 8px 15px;
+            margin-top: -50px;
+            margin-left: -50px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            box-shadow: var(--border-glow);
         }
 
-        .custom-tooltip:hover span {
+        .pnlm-hotspot-base:hover + .custom-tooltip span {
             visibility: visible;
+        }
+
+        /* Loading Bar */
+        #loading-bar-container {
+            width: 300px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+            position: relative;
+        }
+
+        #loading-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
+            transition: width 0.4s ease;
         }
     </style>
 </head>
 <body>
 
-<div id="hud">
-    <strong>System:</strong> Willard Nav-Link v1.0<br>
-    <strong>Sector:</strong> Upper Campus<br>
-    <strong>Status:</strong> Active Scan
-</div>
+    <!-- Initial Entry Protocol -->
+    <div id="splash-overlay">
+        <div class="matrix-bg"></div>
+        <div class="glitch-title">WILLARD NET</div>
+        <div id="loading-bar-container">
+            <div id="loading-bar"></div>
+        </div>
+        <button class="enter-btn" id="enter-trigger" style="display:none;">Enter Willard</button>
+    </div>
 
-<div id="panorama-container">
-    <div id="panorama"></div>
-</div>
+    <div class="scanlines"></div>
+
+    <div id="main-hud">
+        <div class="hud-box">
+            <div class="hud-label">SATELLITE UPLINK</div>
+            <div class="hud-value" id="status-text">ESTABLISHING CONNECTION...</div>
+        </div>
+        <div class="hud-box" style="border-left-color: var(--neon-blue);">
+            <div class="hud-label">CURRENT SECTOR</div>
+            <div class="hud-value" id="sector-name">UNKNOWN</div>
+        </div>
+    </div>
+
+    <div id="top-right-data">
+        <div class="hud-label">SYSTEM TIME</div>
+        <div class="hud-value" id="digital-clock">00:00:00</div>
+        <div class="hud-label" style="margin-top:10px;">COORDINATES</div>
+        <div class="hud-value" id="coords">LAT: 37.86 / LON: -122.25</div>
+    </div>
+
+    <div id="panorama-container">
+        <div id="panorama"></div>
+    </div>
 
 <script>
-    // Advanced Viewer Configuration
+    // --- CLOCK LOGIC ---
+    function updateClock() {
+        const now = new Date();
+        const timeStr = now.getHours().toString().padStart(2, '0') + ":" +
+                        now.getMinutes().toString().padStart(2, '0') + ":" +
+                        now.getSeconds().toString().padStart(2, '0');
+        document.getElementById('digital-clock').innerText = timeStr;
+    }
+    setInterval(updateClock, 1000);
+
+    // --- LOADING SIMULATION ---
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += Math.random() * 15;
+        if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+            document.getElementById('loading-bar').style.width = '100%';
+            setTimeout(() => {
+                document.getElementById('loading-bar-container').style.display = 'none';
+                document.getElementById('enter-trigger').style.display = 'block';
+                document.getElementById('status-text').innerText = "CONNECTION SECURE";
+            }, 500);
+        }
+        document.getElementById('loading-bar').style.width = progress + '%';
+    }, 200);
+
+    // --- INITIALIZE PANNELLUM ---
+    // Scene-based configuration allows you to easily add more scenes later
     const viewer = pannellum.viewer('panorama', {
-        "type": "equirectangular",
-        "panorama": "upper.jpg", // Your 3D image file
-        "autoLoad": true,
-        "autoRotate": -1,        // Slow drift for a "live" surveillance feel
-        "compass": true,         // Adds the compass found in image_8d7d46.jpg
-        "northOffset": 0,
-        "friction": 0.1,         // Makes movement feel smoother/heavier
-        "showFullscreenCtrl": true,
-        "showZoomCtrl": true,
-        "mouseZoom": true,
-        
-        /* Advanced Hotspots: These are the "Arrows" and "Labels" */
-        "hotSpots": [
-            {
-                "pitch": -15,    // Vertical coordinate (down toward floor)
-                "yaw": 10,       // Horizontal coordinate
-                "type": "scene",
-                "text": "Move to Hallway",
-                "sceneId": "hallway" // You'll link this once you have a second JPG
+        "default": {
+            "firstScene": "upper",
+            "author": "Jaap Thind",
+            "sceneFadeDuration": 1500,
+            "autoLoad": true,
+            "compass": true
+        },
+
+        "scenes": {
+            "upper": {
+                "title": "Willard Upper Courtyard",
+                "hfov": 110,
+                "pitch": -3,
+                "yaw": 117,
+                "type": "equirectangular",
+                "panorama": "upper.jpg",
+                "autoRotate": -0.5,
+                "hotSpots": [
+                    {
+                        "pitch": -12,
+                        "yaw": 170,
+                        "type": "info",
+                        "text": "Media Center Access Point",
+                        "attributes": {"class": "custom-tooltip"}
+                    },
+                    {
+                        "pitch": -15,
+                        "yaw": 10,
+                        "type": "scene",
+                        "text": "Navigate to Lower Hallway",
+                        "sceneId": "hallway_placeholder" 
+                    }
+                ]
             },
-            {
-                "pitch": 0,
-                "yaw": 170,
-                "type": "info",
-                "text": "Willard Media Center Entrance",
-                "URL": "https://willard.berkeleyschools.net/" 
+            
+            // This is ready for when you take your next shot
+            "hallway_placeholder": {
+                "title": "Main Hallway",
+                "type": "equirectangular",
+                "panorama": "upper.jpg", // Temporarily reusing same image
+                "hotSpots": [
+                    {
+                        "pitch": -10,
+                        "yaw": -10,
+                        "type": "scene",
+                        "text": "Return to Upper Campus",
+                        "sceneId": "upper"
+                    }
+                ]
             }
-        ]
+        }
     });
 
-    // Console confirmation for STEM testing
-    console.log("Willard Street View Initialized using 'upper.jpg'");
-</script>
+    // --- HUD INTERACTION ---
+    viewer.on('load', function() {
+        const currentScene = viewer.getScene();
+        document.getElementById('sector-name').innerText = currentScene.toUpperCase();
+    });
 
+    // Tracking mouse movement for "Coordinations" data feel
+    document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth).toFixed(3);
+        const y = (e.clientY / window.innerHeight).toFixed(3);
+        document.getElementById('coords').innerText = `X-AXIS: ${x} / Y-AXIS: ${y}`;
+    });
+
+    // --- ENTRY TRIGGER ---
+    document.getElementById('enter-trigger').addEventListener('click', function() {
+        document.getElementById('splash-overlay').classList.add('hidden');
+        document.getElementById('status-text').innerText = "LIVE SURVEILLANCE";
+        
+        // Potential for ambient audio
+        console.log("Protocol 8th-Grade Entry Initiated.");
+    });
+
+    // STEM Feature: Keyboard controls
+    document.addEventListener('keydown', (e) => {
+        if(e.key === 'f') {
+            viewer.toggleFullscreen();
+        }
+    });
+
+</script>
 </body>
 </html>
