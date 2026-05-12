@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Willard Advanced Virtual Tour | Project Alpha</title>
+    
+    <!-- Pannellum Core CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+
+    <style>
+        /* Cyber-Noir UI Design */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #050505;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #panorama-container {
+            width: 100%;
+            height: 100vh;
+            border: 2px solid #00f2ff; /* Hyper-Grid blue border */
+            box-sizing: border-box;
+        }
+
+        /* Custom UI HUD */
+        #hud {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            color: #00f2ff;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-left: 4px solid #ff00ea; /* Rainbow Glass accent */
+            pointer-events: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+        }
+
+        /* Custom Hotspot Styling */
+        .pnlm-hotspot-base {
+            cursor: pointer;
+        }
+        
+        .custom-tooltip span {
+            visibility: hidden;
+            position: absolute;
+            border-radius: 3px;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            max-width: 200px;
+            padding: 5px 10px;
+            margin-left: -220px;
+            cursor: default;
+        }
+
+        .custom-tooltip:hover span {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+
+<div id="hud">
+    <strong>System:</strong> Willard Nav-Link v1.0<br>
+    <strong>Sector:</strong> Upper Campus<br>
+    <strong>Status:</strong> Active Scan
+</div>
+
+<div id="panorama-container">
+    <div id="panorama"></div>
+</div>
+
+<script>
+    // Advanced Viewer Configuration
+    const viewer = pannellum.viewer('panorama', {
+        "type": "equirectangular",
+        "panorama": "upper.jpg", // Your 3D image file
+        "autoLoad": true,
+        "autoRotate": -1,        // Slow drift for a "live" surveillance feel
+        "compass": true,         // Adds the compass found in image_8d7d46.jpg
+        "northOffset": 0,
+        "friction": 0.1,         // Makes movement feel smoother/heavier
+        "showFullscreenCtrl": true,
+        "showZoomCtrl": true,
+        "mouseZoom": true,
+        
+        /* Advanced Hotspots: These are the "Arrows" and "Labels" */
+        "hotSpots": [
+            {
+                "pitch": -15,    // Vertical coordinate (down toward floor)
+                "yaw": 10,       // Horizontal coordinate
+                "type": "scene",
+                "text": "Move to Hallway",
+                "sceneId": "hallway" // You'll link this once you have a second JPG
+            },
+            {
+                "pitch": 0,
+                "yaw": 170,
+                "type": "info",
+                "text": "Willard Media Center Entrance",
+                "URL": "https://willard.berkeleyschools.net/" 
+            }
+        ]
+    });
+
+    // Console confirmation for STEM testing
+    console.log("Willard Street View Initialized using 'upper.jpg'");
+</script>
+
+</body>
+</html>
