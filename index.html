@@ -142,25 +142,7 @@
         }
 
         /* --- SCANLINE EFFECT --- */
-        .scanlines {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                rgba(18, 16, 16, 0) 50%,
-                rgba(0, 0, 0, 0.25) 50%
-            ), linear-gradient(
-                90deg,
-                rgba(255, 0, 0, 0.06),
-                rgba(0, 255, 0, 0.02),
-                rgba(0, 0, 255, 0.06)
-            );
-            background-size: 100% 4px, 3px 100%;
-            pointer-events: none;
-            z-index: 50;
-        }
+        
 
         /* --- PANORAMA STYLING --- */
         #panorama-container {
@@ -224,7 +206,6 @@
         <button class="enter-btn" id="enter-trigger" style="display:none;">Enter Willard</button>
     </div>
 
-    <div class="scanlines"></div>
 
     <div id="main-hud">
         <div class="hud-box">
@@ -291,7 +272,7 @@
                 "title": "Willard Upper Courtyard",
                 "hfov": 110,
                 "pitch": -3,
-                "yaw": 117,
+                "yaw": 117, // This is where you start looking
                 "type": "equirectangular",
                 "panorama": "upper.jpg",
                 "autoRotate": -0.5,
@@ -311,8 +292,8 @@
                         "sceneId": "hallway_placeholder" 
                     },
                     {
-                        "pitch": -20,
-                        "yaw": 45,
+                        "pitch": -30,    // A bit below the horizon
+                        "yaw": -63,      // Exactly 180 degrees from your start (117 - 180)
                         "type": "scene",
                         "text": "Descend to Lower Field",
                         "sceneId": "lower_field" 
