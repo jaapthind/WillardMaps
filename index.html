@@ -310,21 +310,32 @@
                         "type": "scene",
                         "text": "Navigate to Cafeteria",
                         "sceneId": "hallway_placeholder" 
+                    },
+                    {
+                        "pitch": -20, // Adjust this so it lands on the path/stairs in your photo
+                        "yaw": 45,    // Adjust this to point toward the field
+                        "type": "scene",
+                        "text": "Descend to Lower Field",
+                        "sceneId": "lower_field" 
                     }
                 ]
             },
             
             // This is ready for when you take your next shot
-            "hallway_placeholder": {
-                "title": "Main Hallway",
+            "lower_field": {
+                "title": "Willard Lower Field",
+                "hfov": 110,
+                "pitch": 0,
+                "yaw": 0,
                 "type": "equirectangular",
-                "panorama": "upper.jpg", // Temporarily reusing same image
+                "panorama": "lowerfield.JPG", // Ensure the filename case matches exactly
+                "autoRotate": -0.5,
                 "hotSpots": [
                     {
-                        "pitch": -10,
-                        "yaw": -10,
+                        "pitch": 10,
+                        "yaw": 180,
                         "type": "scene",
-                        "text": "Return to Upper Campus",
+                        "text": "Return to Upper Courtyard",
                         "sceneId": "upper"
                     }
                 ]
