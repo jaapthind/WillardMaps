@@ -78,26 +78,43 @@
             position: relative;
         }
 
-        .enter-btn {
-            padding: 20px 60px;
+        .sector-btn {
+            padding: 15px 40px;
             background: transparent;
             border: 2px solid var(--neon-blue);
             color: var(--neon-blue);
-            font-size: 1.2rem;
+            font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 5px;
+            letter-spacing: 4px;
             cursor: pointer;
             position: relative;
             overflow: hidden;
             transition: 0.3s;
             box-shadow: var(--border-glow);
             backdrop-filter: blur(5px);
+            margin: 10px;
+            width: 300px;
         }
 
-        .enter-btn:hover {
+        .sector-btn:hover {
             background: var(--neon-blue);
             color: #000;
             box-shadow: 0 0 30px var(--neon-blue);
+        }
+
+        #scene-selector {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .selector-title {
+            color: var(--neon-pink);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
         }
 
         /* --- ADVANCED HUD ELEMENTS --- */
@@ -140,9 +157,6 @@
             text-align: right;
             color: var(--neon-blue);
         }
-
-        /* --- SCANLINE EFFECT --- */
-        
 
         /* --- PANORAMA STYLING --- */
         #panorama-container {
@@ -203,7 +217,10 @@
         <div id="loading-bar-container">
             <div id="loading-bar"></div>
         </div>
-        <button class="enter-btn" id="enter-trigger" style="display:none;">Enter Willard</button>
+        <div id="scene-selector">
+            <div class="selector-title">Select Starting Sector</div>
+            <div id="dynamic-buttons"></div>
+        </div>
     </div>
 
 
@@ -240,22 +257,75 @@
     }
     setInterval(updateClock, 1000);
 
-    // --- LOADING SIMULATION ---
-    let progress = 0;
-    const interval = setInterval(() => {
-        progress += Math.random() * 15;
-        if (progress >= 100) {
-            progress = 100;
-            clearInterval(interval);
-            document.getElementById('loading-bar').style.width = '100%';
-            setTimeout(() => {
-                document.getElementById('loading-bar-container').style.display = 'none';
-                document.getElementById('enter-trigger').style.display = 'block';
-                document.getElementById('status-text').innerText = "CONNECTION SECURE";
-            }, 500);
+    // --- SCENE CONFIGURATION ---
+    const siteScenes = {
+        "upper": {
+            "title": "Willard Upper Courtyard",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "upper.jpg",
+            "autoRotate": -0.5,
+            "hotSpots": [
+                {
+                    "pitch": -12,
+                    "yaw": 170,
+                    "type": "info",
+                    "text": "Media Center Access Point",
+                    "attributes": {"class": "custom-tooltip"}
+                },
+                {
+                    "pitch": -15,
+                    "yaw": 10,
+                    "type": "scene",
+                    "text": "Navigate to Cafeteria",
+                    "sceneId": "hallway_placeholder" 
+                },
+                {
+                    "pitch": -5,    
+                    "yaw": -63,      
+                    "type": "scene",
+                    "text": "Descend to Lower Field",
+                    "sceneId": "lower_field" 
+                }
+            ]
+        },
+        
+        "lower_field": {
+            "title": "Willard Lower Field",
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "lowerfield.JPG",
+            "autoRotate": -0.5,
+            "hotSpots": [
+                {
+                    "pitch": 10,
+                    "yaw": 180,
+                    "type": "scene",
+                    "text": "Return to Upper Courtyard",
+                    "sceneId": "upper"
+                }
+            ]
+        },
+
+        "hallway_placeholder": {
+            "title": "Main Hallway",
+            "type": "equirectangular",
+            "panorama": "upper.jpg", 
+            "hotSpots": [
+                {
+                    "pitch": -10,
+                    "yaw": -10,
+                    "type": "scene",
+                    "text": "Return to Upper Campus",
+                    "sceneId": "upper"
+                }
+            ]
         }
-        document.getElementById('loading-bar').style.width = progress + '%';
-    }, 200);
+    };
 
     // --- INITIALIZE PANNELLUM ---
     const viewer = pannellum.viewer('panorama', {
@@ -266,81 +336,50 @@
             "autoLoad": true,
             "compass": true
         },
-
-        "scenes": {
-            "upper": {
-                "title": "Willard Upper Courtyard",
-                "hfov": 110,
-                "pitch": -3,
-                "yaw": 117, // This is where you start looking
-                "type": "equirectangular",
-                "panorama": "upper.jpg",
-                "autoRotate": -0.5,
-                "hotSpots": [
-                    {
-                        "pitch": -12,
-                        "yaw": 170,
-                        "type": "info",
-                        "text": "Media Center Access Point",
-                        "attributes": {"class": "custom-tooltip"}
-                    },
-                    {
-                        "pitch": -15,
-                        "yaw": 10,
-                        "type": "scene",
-                        "text": "Navigate to Cafeteria",
-                        "sceneId": "hallway_placeholder" 
-                    },
-                    {
-                        "pitch": -5,    // A bit below the horizon
-                        "yaw": -63,      // Exactly 180 degrees from your start (117 - 180)
-                        "type": "scene",
-                        "text": "Descend to Lower Field",
-                        "sceneId": "lower_field" 
-                    }
-                ]
-            },
-            
-            "lower_field": {
-                "title": "Willard Lower Field",
-                "hfov": 110,
-                "pitch": 0,
-                "yaw": 0,
-                "type": "equirectangular",
-                "panorama": "lowerfield.JPG",
-                "autoRotate": -0.5,
-                "hotSpots": [
-                    {
-                        "pitch": 10,
-                        "yaw": 180,
-                        "type": "scene",
-                        "text": "Return to Upper Courtyard",
-                        "sceneId": "upper"
-                    }
-                ]
-            },
-
-            "hallway_placeholder": {
-                "title": "Main Hallway",
-                "type": "equirectangular",
-                "panorama": "upper.jpg", 
-                "hotSpots": [
-                    {
-                        "pitch": -10,
-                        "yaw": -10,
-                        "type": "scene",
-                        "text": "Return to Upper Campus",
-                        "sceneId": "upper"
-                    }
-                ]
-            }
-        }
+        "scenes": siteScenes
     });
+
+    // --- DYNAMIC BUTTON GENERATION & LOADING ---
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += Math.random() * 15;
+        if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+            document.getElementById('loading-bar').style.width = '100%';
+            setTimeout(() => {
+                document.getElementById('loading-bar-container').style.display = 'none';
+                
+                // Generate buttons dynamically based on scenes with panoramas
+                const btnContainer = document.getElementById('dynamic-buttons');
+                for (const [sceneId, sceneData] of Object.entries(siteScenes)) {
+                    if (sceneData.panorama) {
+                        const btn = document.createElement('button');
+                        btn.className = 'sector-btn';
+                        btn.innerText = sceneData.title;
+                        btn.onclick = function() {
+                            document.getElementById('splash-overlay').classList.add('hidden');
+                            document.getElementById('status-text').innerText = "LIVE SURVEILLANCE";
+                            viewer.loadScene(sceneId);
+                            console.log("Protocol 8th-Grade Entry Initiated for: " + sceneId);
+                        };
+                        btnContainer.appendChild(btn);
+                    }
+                }
+                
+                document.getElementById('scene-selector').style.display = 'flex';
+                document.getElementById('status-text').innerText = "AWAITING SECTOR SELECTION...";
+            }, 500);
+        }
+        document.getElementById('loading-bar').style.width = progress + '%';
+    }, 200);
 
     // --- HUD INTERACTION ---
     viewer.on('load', function() {
         const currentScene = viewer.getScene();
-        document.getElementById('sector-name').innerText = currentScene.toUpperCase();
+        if(siteScenes[currentScene]) {
+            document.getElementById('sector-name').innerText = siteScenes[currentScene].title.toUpperCase();
+        }
     });
 
     // Tracking mouse movement for "Coordinations" data feel
@@ -348,14 +387,6 @@
         const x = (e.clientX / window.innerWidth).toFixed(3);
         const y = (e.clientY / window.innerHeight).toFixed(3);
         document.getElementById('coords').innerText = `X-AXIS: ${x} / Y-AXIS: ${y}`;
-    });
-
-    // --- ENTRY TRIGGER ---
-    document.getElementById('enter-trigger').addEventListener('click', function() {
-        document.getElementById('splash-overlay').classList.add('hidden');
-        document.getElementById('status-text').innerText = "LIVE SURVEILLANCE";
-        
-        console.log("Protocol 8th-Grade Entry Initiated.");
     });
 
     // STEM Feature: Keyboard controls
