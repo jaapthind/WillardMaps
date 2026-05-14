@@ -205,6 +205,8 @@
         .result-item:hover {
             background: rgba(255, 255, 255, 0.1);
         }
+        /* Add this to your <style> section */
+        .hud-glass:first-child { display: none; }
 
         .result-icon {
             width: 20px;
@@ -353,6 +355,19 @@
 
                     <!-- Profile Pic Placeholder -->
                     <div class="profile-pic">W</div>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 15px; pointer-events: auto;">
+    <!-- Suggestion Chips -->
+                    <button onclick="openLiquidModal('🚻 RESTROOM LOCATIONS', '• <b>Upper Wing:</b> Near Room 210<br>• <b>Lower Wing:</b> Near Gymnasium<br>• <b>Main Office:</b> Staff Only')" style="background: var(--glass-bg); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); color: #fff; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; transition: 0.3s;" onmouseover="this.style.borderColor='var(--willard-yellow)'" onmouseout="this.style.borderColor='var(--glass-border)'">🚻 Bathrooms</button>
+                    
+                    <button onclick="openLiquidModal('🔔 WILLARD BELL SCHEDULE', '<div style=\'display:grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 0.75rem;\'><div style=\'border-right: 1px solid var(--glass-border); padding-right: 10px;\'><b>MON/TUE</b><br>0: 7:45-8:30<br>Adv: 8:45-9:07<br>1: 9:11-9:58<br>2: 10:02-10:49<br>3: 10:59-11:46<br>L: 11:46-12:18<br>4: 12:22-1:09<br>5: 1:13-2:00<br>6: 2:04-2:51</div><div><b>WEDNESDAY</b><br>0: 7:45-8:30<br>1: 8:45-9:34<br>2: 9:38-10:21<br>3: 10:25-11:08<br>L: 11:08-11:39<br>4: 11:43-12:26<br>5: 12:30-1:13<br>6: 1:17-2:00<br><br><b>THU/FRI</b><br>1&2: 9:20-10:55<br>3: 11:05-11:51<br>L: 11:51-12:22</div></div>')" style="background: var(--glass-bg); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); color: #fff; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; transition: 0.3s;" onmouseover="this.style.borderColor='var(--willard-yellow)'" onmouseout="this.style.borderColor='var(--glass-border)'">🔔 Bell Schedule</button>
+                
+                    <!-- The Liquid Glass Modal Wrapper -->
+                    <div id="liquid-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85%; max-width: 400px; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1px solid var(--glass-border); border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); z-index: 1000; padding: 25px; pointer-events: auto;">
+                        <div id="modal-title" style="color: var(--willard-yellow); font-weight: 800; letter-spacing: 2px; font-size: 1rem; margin-bottom: 15px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;"></div>
+                        <div id="modal-body" style="color: #fff; line-height: 1.6; font-size: 0.9rem; margin-bottom: 20px;"></div>
+                        <button onclick="document.getElementById('liquid-modal').style.display='none'" style="width: 100%; padding: 12px; background: transparent; border: 1px solid var(--willard-yellow); color: var(--willard-yellow); border-radius: 12px; cursor: pointer; font-weight: 600; transition: 0.3s;" onmouseover="this.style.background='var(--willard-yellow)'; this.style.color='#000'">CLOSE PROTOCOL</button>
+                    </div>
                 </div>
             </div>
 
@@ -614,6 +629,11 @@
             viewer.toggleFullscreen();
         }
     });
+    function openLiquidModal(title, body) {
+    document.getElementById('modal-title').innerHTML = title;
+    document.getElementById('modal-body').innerHTML = body;
+    document.getElementById('liquid-modal').style.display = 'block';
+}
 
 </script>
 </body>
