@@ -484,11 +484,33 @@
             "panorama": "basketball.JPG", 
             "hotSpots": [
                 {
-                    "pitch": 0,
+                    "pitch": -6,
                     "yaw": 350, 
                     "type": "scene",
                     "text": "Return to Amphitheater",
                     "sceneId": "lower_field"
+                },
+                {
+                    "pitch": -10,
+                    "yaw": 90,
+                    "type": "scene",
+                    "text": "Navigate to PE Numbers",
+                    "sceneId": "pe_numbers"
+                }
+            ]
+        },
+                "pe_numbers": {
+            "title": "Willard PE Numbers",
+            "keywords": ["pe numbers", "locker rooms", "gym", "pe", "sports"],
+            "type": "equirectangular",
+            "panorama": "numbers.JPG", 
+            "hotSpots": [
+                {
+                    "pitch": -10,
+                    "yaw": 270, 
+                    "type": "scene",
+                    "text": "Return to Basketball Courts",
+                    "sceneId": "basketball_courts"
                 }
             ]
         }
@@ -621,9 +643,11 @@
             item.innerHTML = html;
 
             // Click handler for routing
+            // Click handler for routing
             item.addEventListener('click', () => {
                 requestFullScreen(); // Ensure fullscreen
-                viewer.loadScene(match.sceneId);
+                // Fixes the tilt by forcing pitch to 0 and yaw to 0 on every transition!
+                viewer.loadScene(match.sceneId, 0, 0, 110);
                 searchInput.value = ''; // Clear input
                 searchResults.classList.remove('active'); // Hide dropdown
                 searchInput.blur(); // Remove focus
