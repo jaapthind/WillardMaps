@@ -453,7 +453,7 @@
                     "sceneId": "upper"
                 },
                 {
-                    "pitch": 0,
+                    "pitch": -13,
                     "yaw": 75,
                     "type": "scene",
                     "text": "Navigate to Basketball Courts",
@@ -502,7 +502,9 @@
             "sceneFadeDuration": 1500,
             "autoLoad": true,
             "compass": true,
-            "showControls": false // Hide default controls for cleaner UI
+            "showControls": false, 
+            "defaultPitch": 0,    // <-- ADD THIS TO LEVEL THE HORIZON
+            "defaultYaw": 0/
         },
         "scenes": siteScenes
     });
