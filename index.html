@@ -431,6 +431,13 @@
                     "type": "scene",
                     "text": "Amphitheater",
                     "sceneId": "lower_field" 
+                },
+                {
+                    "pitch": -8,
+                    "yaw": -26,
+                    "type": "scene",
+                    "text": "Go to Front of D Building",
+                    "sceneId": "front_of_d_building"
                 }
             ]
         },
@@ -511,6 +518,21 @@
                     "type": "scene",
                     "text": "Return to Basketball Courts",
                     "sceneId": "basketball_courts"
+                }
+            ]
+        },
+                "front_of_d_building": {
+            "title": "Front of D Building",
+            "keywords": ["d building", "front", "classrooms", "hallway"],
+            "type": "equirectangular",
+            "panorama": "frontdbuilding.JPG", // Change to match your actual filename
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 135, // Points 180° back around to return where you came from
+                    "type": "scene",
+                    "text": "Return",
+                    "sceneId": "upper" // Change to whichever scene you are currently editing
                 }
             ]
         }
