@@ -330,7 +330,7 @@
     </style>
 </head>
 <body>
-    <div id="simple-liquid-intro" style="position:fixed;inset:0;z-index:999999;background:linear-gradient(135deg, #003314 0%, #fffd38 100%);display:flex;align-items:center;justify-content:center;pointer-events:none;animation: fadeOut 0.4s ease 2s forwards;"><h1 style="font-family:'Inter',sans-serif;font-weight:900;font-size:clamp(3rem,8vw,6rem);text-transform:uppercase;background:linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8f00ff, #ff0000);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation: liquidFlow 2s linear infinite, gentlePulse 2s ease-in-out infinite alternate;filter:drop-shadow(0 10px 20px rgba(0,0,0,0.4));letter-spacing:-2px;text-align:center;">WELCOME TO WILLARD</h1><style>@keyframes liquidFlow { to { background-position: 200% center; } } @keyframes gentlePulse { from { transform: scale(1); filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4)); } to { transform: scale(1.03); filter: drop-shadow(0 15px 30px rgba(0,0,0,0.6)); } } @keyframes fadeOut { to { opacity:0; visibility:hidden; } }</style></div>
+    <div id="simple-liquid-intro" style="position:fixed;inset:0;z-index:999999;background:linear-gradient(135deg, #003314 0%, #fffd38 100%);display:flex;align-items:center;justify-content:center;pointer-events:none;animation: fadeOut 0.5s ease 1.5s forwards;"><h1 style="font-family:'Inter',sans-serif;font-weight:900;font-size:clamp(3rem,8vw,6rem);text-transform:uppercase;background:linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8f00ff, #ff0000);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation: liquidFlow 2s linear infinite, gentlePulse 2s ease-in-out infinite alternate;filter:drop-shadow(0 10px 20px rgba(0,0,0,0.4));letter-spacing:-2px;text-align:center;">WELCOME TO WILLARD</h1><style>@keyframes liquidFlow { to { background-position: 200% center; } } @keyframes gentlePulse { from { transform: scale(1); filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4)); } to { transform: scale(1.03); filter: drop-shadow(0 15px 30px rgba(0,0,0,0.6)); } } @keyframes fadeOut { to { opacity:0; visibility:hidden; } }</style></div>
 
     <!-- MAP CONTAINER -->
     <div id="panorama-container">
@@ -534,7 +534,7 @@
                     "sceneId": "upper" // Change to whichever scene you are currently editing
                 },
                 {
-                    "pitch": -6,
+                    "pitch": -3,
                     "yaw": -90, // Look 90 degrees left from the start frame
                     "type": "scene",
                     "text": "Go to Bike Racks",
@@ -626,7 +626,7 @@
             "hotSpots": [
                 {
                     "pitch": -8,
-                    "yaw": 90, // Points 180° back around to return to the building
+                    "yaw": 25, // Points 180° back around to return to the building
                     "type": "scene",
                     "text": "Return to Front of D Building",
                     "sceneId": "front_of_d_building"
