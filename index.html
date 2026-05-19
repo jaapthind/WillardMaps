@@ -546,11 +546,27 @@
             "panorama": "willard.JPG", // Your corner image asset
             "hotSpots": [
                 {
-                    "pitch": -8,
-                    "yaw": 205,
+                    "pitch": -6,
+                    "yaw": 218,
                     "type": "scene",
                     "text": "Go to Midway Point",
                     "sceneId": "midway"
+                }
+               
+            ]
+        },
+        "midway": {
+            "title": "Midway Path",
+            "keywords": ["midway", "pathway", "walkway"],
+            "type": "equirectangular",
+            "panorama": "midway.JPG", // Make sure this matches your actual image file name
+            "hotSpots": [
+                {
+                    "pitch": -12,
+                    "yaw": 90, // Points exactly back around to the street entrance
+                    "type": "scene",
+                    "text": "Go to Main Gate #1",
+                    "sceneId": "main_gate_1"
                 }
                
             ]
@@ -571,7 +587,7 @@
                     "text": "Return to Midway Path",
                     "sceneId": "midway"
                 }
-        
+               
             ]
         }
     };
