@@ -599,6 +599,13 @@
                     "type": "scene",
                     "text": "Go to Main Courtyard",
                     "sceneId": "main_courtyard"
+                },
+                {
+                    "pitch": -8,
+                    "yaw": 270,
+                    "type": "scene",
+                    "text": "Go to Main Gate 2",
+                    "sceneId": "main_gate_2"
                 }
                
             ]
@@ -631,6 +638,25 @@
                     "text": "Return to Front of D Building",
                     "sceneId": "front_of_d_building"
                 }
+            ]
+        },
+        "main_gate_2": {
+            "title": "Main Gate 2",
+            "keywords": ["gate", "entrance", "second gate", "fence"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "maingate2.JPG", // Make sure this matches your image filename exactly
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": -90,
+                    "type": "scene",
+                    "text": "Return to Main Gate 1",
+                    "sceneId": "main_gate_1"
+                }
+                
             ]
         }
     };
