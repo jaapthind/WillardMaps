@@ -562,13 +562,29 @@
             "panorama": "midway.JPG", // Make sure this matches your actual image file name
             "hotSpots": [
                 {
-                    "pitch": -8,
-                    "yaw": 50, // Points exactly back around to the street entrance
+                    "pitch": -12,
+                    "yaw": 90, // Points exactly back around to the street entrance
                     "type": "scene",
                     "text": "Go to Main Gate #1",
-                    "sceneId": "telegraph_corner"
+                    "sceneId": "main_gate_1"
                 }
                
+            ]
+        },
+        "main_gate_1": {
+            "title": "Main Gate 1",
+            "keywords": ["gate", "entrance", "main gate", "fence"],
+            "type": "equirectangular",
+            "panorama": "maingate1.JPG", // Make sure this matches your image file name exactly
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Walks forward through the gate onto the campus path
+                    "type": "scene",
+                    "text": "Return to Midway Path",
+                    "sceneId": "midway"
+                },
+                
             ]
         }
     };
