@@ -648,6 +648,13 @@
                     "type": "scene",
                     "text": "Walk onto the Grass",
                     "sceneId": "grass"
+                },
+                {
+                    "pitch": -7,
+                    "yaw": 245, // Positioned along the path boundary lines heading out to the field
+                    "type": "scene",
+                    "text": "Go to Baseball Diamond",
+                    "sceneId": "baseball_diamond"
                 }
             ]
         },
@@ -684,6 +691,38 @@
                     "yaw": 160, // Points backward to step back onto the pavement
                     "type": "scene",
                     "text": "Go to Bike Racks",
+                    "sceneId": "bike_racks"
+                },
+                {
+                    "pitch": -6,
+                    "yaw": 180, // Facing straight out across the field toward the home plate area
+                    "type": "scene",
+                    "text": "Go to Baseball Diamond",
+                    "sceneId": "baseball_diamond"
+                }
+            ]
+        },
+        "baseball_diamond": {
+            "title": "Willard Baseball Diamond",
+            "keywords": ["baseball", "diamond", "field", "bleachers", "dugout"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 180,
+            "type": "equirectangular",
+            "panorama": "Diamond.JPG",
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 0, // Points toward the outfield, providing a clear visual navigation cue
+                    "type": "scene",
+                    "text": "Go to Grass Field",
+                    "sceneId": "grass"
+                },
+                {
+                    "pitch": -10,
+                    "yaw": 165, // Points towards a side path that naturally leads to the bike racks
+                    "type": "scene",
+                    "text": "Return to Bike Racks",
                     "sceneId": "bike_racks"
                 }
             ]
