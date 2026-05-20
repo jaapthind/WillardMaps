@@ -641,6 +641,13 @@
                     "type": "scene",
                     "text": "Return to Front of D Building",
                     "sceneId": "front_of_d_building"
+                },
+                {
+                    "pitch": -8,
+                    "yaw": 180, // <-- Added exactly 180 degrees from scene load angle
+                    "type": "scene",
+                    "text": "Walk onto the Grass",
+                    "sceneId": "grass"
                 }
             ]
         },
@@ -661,6 +668,24 @@
                     "sceneId": "main_gate_1"
                 }
                 
+            ]
+        },
+        "grass": {
+            "title": "Willard Grass Field",
+            "keywords": ["grass", "field", "lawn", "outside"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "grass.jpg",
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Points backward to step back onto the pavement
+                    "type": "scene",
+                    "text": "Go to Bike Racks",
+                    "sceneId": "bike_racks"
+                }
             ]
         }
     };
