@@ -979,39 +979,7 @@
     // Force the horizon to stay locked at 0 degrees pitch at all times
    // --- GLOBAL HORIZON REPELLER / AUTO-LEVELER ---
    // --- GLOBAL HORIZON AUTO-LEVELER ---
-    function balanceHorizon() {
-        if (viewer) {
-            // 1. Force the camera hardware pitch to stay absolutely flat
-            if (viewer.getPitch() !== 0) {
-                viewer.setPitch(0, false); 
-            }
-            
-            // 2. Dynamic Optical Adjustment Matrix
-            const currentYaw = viewer.getYaw();
-            
-            // Calculate a counter-distortion offset based on the lens angle
-            const distortionCorrection = Math.sin(currentYaw * (Math.PI / 180)) * 2.5; 
-            
-            // 3. Talk directly to the internal renderer to avoid crashing the program
-            const renderer = viewer.getRenderer();
-            if (renderer && typeof renderer.setRoll === 'function') {
-                renderer.setRoll(distortionCorrection);
-            } else if (viewer.getContainer()) {
-                // Fail-safe backup: If WebGL roll isn't accessible, rotate the CSS canvas container instead
-                const panoramaCanvas = viewer.getContainer().querySelector('.pnlm-render-container');
-                if (panoramaCanvas) {
-                    panoramaCanvas.style.transform = `rotate(${distortionCorrection}deg)`;
-                }
-            }
-        }
-        // Keeps the loop hunting frame-by-frame for smooth, lag-free rendering
-        requestAnimationFrame(balanceHorizon);
-    }
-
-    // Start the tracking matrix loop as soon as the map viewer finishes loading
-    viewer.on('load', function() {
-        balanceHorizon();
-    });
+    
 
 </script>
 </body>
