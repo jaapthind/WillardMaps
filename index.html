@@ -760,6 +760,12 @@
             ]
         }
     };
+    
+    const sceneExpectations = {
+        "upper": "explanation placeholder.",
+        "cafeteria": "Cafeteria: Clean up your trash after eating. Return trays to the designated area.",
+        "basketball_courts": "placeholder."
+    };
 
     // --- INITIALIZE PANNELLUM ---
     const viewer = pannellum.viewer('panorama', {
@@ -797,13 +803,24 @@
     document.addEventListener('touchstart', requestFullScreen, { once: true });
 
     // --- HUD UPDATES ---
+    // --- HUD UPDATES & EXPECTATIONS ---
+    const seenExpectations = new Set(); // Optional: keeps it from showing every single time
     viewer.on('load', function() {
         const currentScene = viewer.getScene();
+        
+        // Update HUD
         if(siteScenes[currentScene]) {
             document.getElementById('current-sector-name').innerText = siteScenes[currentScene].title.toUpperCase();
         }
-    });
 
+        // Auto-show expectations if they exist for this scene
+        if (sceneExpectations[currentScene] && !seenExpectations.has(currentScene)) {
+            seenExpectations.add(currentScene); 
+            setTimeout(() => {
+                openLiquidModal("🏫 AREA EXPECTATIONS", sceneExpectations[currentScene]);
+            }, 1000);
+        }
+    });
     document.addEventListener('mousemove', (e) => {
         const x = (e.clientX / window.innerWidth).toFixed(3);
         const y = (e.clientY / window.innerHeight).toFixed(3);
