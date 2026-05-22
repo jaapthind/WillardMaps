@@ -951,6 +951,12 @@
         document.getElementById('modal-body').innerHTML = body;
         document.getElementById('liquid-modal').style.display = 'block';
     }
+    // Force the horizon to stay locked at 0 degrees pitch at all times
+    viewer.on('change', function() {
+        if (viewer.getPitch() !== 0) {
+            viewer.setPitch(0, false); // Instantly snaps pitch back to 0 without animation lag
+        }
+    });
 
 </script>
 </body>
