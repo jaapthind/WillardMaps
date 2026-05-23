@@ -6,8 +6,7 @@
     <title>Willard Maps</title>
     
     <!-- Willard Maps Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%23003314'/><stop offset='100%' style='stop-color:%23fffd38'/></linearGradient></defs><path d='M16 2C10.5 2 6 6.5 6 12c0 7.5 10 18 10 18s10-10.5 10-18c0-5.5-4.5-10-10-10z' fill='url(%23g)'/><circle cx='16' cy='12' r='4' fill='black'/></svg>">
-    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='0' y='0' width='32' height='32' rx='9' fill='%23fffd38'/><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%23003314'/><stop offset='100%' style='stop-color:%23fffd38'/></linearGradient></defs><path d='M16 4C11.5 4 8 7.5 8 12c0 6 8 14 8 14s8-8 8-14c0-4.5-3.5-8-8-8z' fill='url(%23g)'/><circle cx='16' cy='12' r='3.2' fill='black'/></svg>">    
     <!-- Pannellum Core CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
@@ -932,6 +931,31 @@
                     "type": "scene",
                     "text": "Go Back Down Stairs",
                     "sceneId": "go_up_to_tudisco_hall"
+                },
+                {
+                    "pitch": -6,
+                    "yaw": 115, // <-- Positioned 115 degrees right from the landing load view
+                    "type": "scene",
+                    "text": "Go to Tudisco Hall Back",
+                    "sceneId": "tudisco_hall_back"
+                }
+            ]
+        },
+        "tudisco_hall_back": {
+            "title": "Tudisco Hall Back",
+            "keywords": ["tudisco hall back", "hallway", "hall", "back"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "tudiscoback.JPG", // Make sure this matches your image filename exactly
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 295, // Turns 115 degrees left (360 - 115 = 295) to line back up with the landing
+                    "type": "scene",
+                    "text": "Return to Top of Stairs Landing",
+                    "sceneId": "top_of_stairs"
                 }
             ]
         }
