@@ -643,6 +643,13 @@
                     "type": "scene",
                     "text": "Go to Basketball Courts",
                     "sceneId": "basketball_courts"
+                },
+                {
+                    "pitch": -6,
+                    "yaw": -50, // <-- Positioned 50 degrees left from the main loading view
+                    "type": "scene",
+                    "text": "Enter Tudisco Hall",
+                    "sceneId": "tudisco_hall"
                 }
                 
             ]
@@ -781,6 +788,74 @@
                     "type": "scene",
                     "text": "Return to PE Numbers",
                     "sceneId": "pe_numbers"
+                }
+            ]
+        },
+        "tudisco_hall": {
+            "title": "Tudisco Hall",
+            "keywords": ["tudisco hall", "hallway", "hall", "classrooms", "inside"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "Tudisco.JPG", // Make sure this matches your image filename exactly
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Spin completely around to step back out into the quad
+                    "type": "scene",
+                    "text": "Exit to Main Courtyard",
+                    "sceneId": "main_courtyard"
+                },
+                {
+                    "pitch": -15, // <-- Tilted down as requested
+                    "yaw": 0,    // <-- Facing straight ahead from the default entrance view
+                    "type": "scene",
+                    "text": "Go to Lower Level",
+                    "sceneId": "lower_level2"
+                }
+            ]
+        },
+        "lower_level2": {
+            "title": "Continue to Lower Level",
+            "keywords": ["lower level", "basement", "downstairs", "hallway"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "lower.JPG", // Make sure this matches your image filename exactly
+            "hotSpots": [
+                {
+                    "pitch": 10,  // Tilted up to look back up the stairs/ramp
+                    "yaw": 180, // Facing completely around to head back up
+                    "type": "scene",
+                    "text": "Return to Tudisco Hall",
+                    "sceneId": "tudisco_hall"
+                }
+                {
+                    "pitch": -6,
+                    "yaw": 0, // Walk straight forward down the path
+                    "type": "scene",
+                    "text": "Continue Down Hallway",
+                    "sceneId": "lower_level"
+                }
+            ]
+        },
+        "lower_level": {
+            "title": "Lower Level Hallway",
+            "keywords": ["lower level", "basement", "downstairs", "hallway"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "bottom.JPG", // Make sure this matches your second image file name
+            "hotSpots": [
+                {
+                    "pitch": -6,
+                    "yaw": 180, // Facing completely around to head back up toward the ramp entry point
+                    "type": "scene",
+                    "text": "Go Back",
+                    "sceneId": "continue_to_lower_level"
                 }
             ]
         }
