@@ -877,10 +877,61 @@
             "hotSpots": [
                 {
                     "pitch": -6,
-                    "yaw": 180, // Turns completely around to head back up the hallway
+                    "yaw": 30, // Turns completely around to head back up the hallway
                     "type": "scene",
                     "text": "Go Back Up Hallway",
                     "sceneId": "lower_level"
+                },
+                {
+                    "pitch": -6,
+                    "yaw": -150, // <-- Positioned 150 degrees left from the loading angle
+                    "type": "scene",
+                    "text": "Go Up to Tudisco Hall",
+                    "sceneId": "go_up_to_tudisco_hall"
+                }
+            ]
+        },
+        "go_up_to_tudisco_hall": {
+            "title": "Stairs to Tudisco Hall",
+            "keywords": ["stairs", "tudisco hall", "upstairs", "exit"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "stairs.JPG", // Make sure this matches your image filename exactly
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Turn around to go back down to the middle hallway
+                    "type": "scene",
+                    "text": "Return to Lower Level Middle",
+                    "sceneId": "lower_level_middle"
+                },
+                {
+                    "pitch": -6,
+                    "yaw": 90, // <-- Positioned exactly 90 degrees right of center view
+                    "type": "scene",
+                    "text": "Go to Top of Stairs Landing",
+                    "sceneId": "top_of_stairs"
+                }
+               
+            ]
+        },
+        "top_of_stairs": {
+            "title": "Top of Stairs Landing",
+            "keywords": ["top of stairs", "landing", "upstairs", "hallway"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "topstairs.JPG", // Make sure this matches your image filename exactly
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 270, // Turns 90 degrees left (or 270 right) to point back down the stairs
+                    "type": "scene",
+                    "text": "Go Back Down Stairs",
+                    "sceneId": "go_up_to_tudisco_hall"
                 }
             ]
         }
