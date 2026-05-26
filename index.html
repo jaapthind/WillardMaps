@@ -653,11 +653,12 @@
                     "sceneId": "tudisco_hall"
                 },
                 {
-                    "pitch": -6,                  // <-- ADD THIS HOTSPOT
-                    "yaw": -70,                  // Exactly 20 degrees left of Tudisco Hall (-50 - 20)
+                    "pitch": -4,                  // <-- ADD THIS HOTSPOT
+                    "yaw": -60,                  // Exactly 20 degrees left of Tudisco Hall (-50 - 20)
                     "type": "scene",
                     "text": "Go to Mr. Mac's Room",
-                    "sceneId": "mr_mac"
+                    "sceneId": "mr_mac",
+                    "targetYaw": 180
                 },
                 {
                     "pitch": -6,
@@ -829,7 +830,8 @@
                     "yaw": 180, // Spin completely around to step back out into the quad
                     "type": "scene",
                     "text": "Exit to Main Courtyard",
-                    "sceneId": "main_courtyard"
+                    "sceneId": "main_courtyard",
+                    "targetYaw": 110
                 },
                 {
                     "pitch": -15, // <-- Tilted down as requested
@@ -840,8 +842,8 @@
                     "targetYaw": 180
                 },
                 {
-                    "pitch": -15,                 // <-- ADD THIS HOTSPOT
-                    "yaw": -48,                   // Exactly 48 degrees left of the lower level link (0 - 48)
+                    "pitch": -10,                 // <-- ADD THIS HOTSPOT
+                    "yaw": -38,                   // Exactly 48 degrees left of the lower level link (0 - 48)
                     "type": "scene",
                     "text": "Go to 6th Grade Pod",
                     "sceneId": "sixth_grade_pod"
@@ -1052,10 +1054,11 @@
             "hotSpots": [
                 {
                     "pitch": -8,
-                    "yaw": 180, // Spin completely around to face the exit door
+                    "yaw": 0, // Spin completely around to face the exit door
                     "type": "scene",
                     "text": "Return to Main Courtyard",
-                    "sceneId": "main_courtyard"
+                    "sceneId": "main_courtyard",
+                    "targetYaw": 110
                 }
             ]
         },
