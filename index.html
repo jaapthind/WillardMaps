@@ -647,10 +647,17 @@
                 },
                 {
                     "pitch": -6,
-                    "yaw": -50, // <-- Positioned 50 degrees left from the main loading view
+                    "yaw": -38, // <-- Positioned 50 degrees left from the main loading view
                     "type": "scene",
                     "text": "Enter Tudisco Hall",
                     "sceneId": "tudisco_hall"
+                },
+                {
+                    "pitch": -6,                  // <-- ADD THIS HOTSPOT
+                    "yaw": -70,                  // Exactly 20 degrees left of Tudisco Hall (-50 - 20)
+                    "type": "scene",
+                    "text": "Go to Mr. Mac's Room",
+                    "sceneId": "mr_mac"
                 },
                 {
                     "pitch": -6,
@@ -831,6 +838,13 @@
                     "text": "Go to Lower Level",
                     "sceneId": "lower_level2",
                     "targetYaw": 180
+                },
+                {
+                    "pitch": -15,                 // <-- ADD THIS HOTSPOT
+                    "yaw": -48,                   // Exactly 48 degrees left of the lower level link (0 - 48)
+                    "type": "scene",
+                    "text": "Go to 6th Grade Pod",
+                    "sceneId": "sixth_grade_pod"
                 }
             ]
         },
@@ -1026,13 +1040,50 @@
                     "sceneId": "main_gate_2"
                 }
             ]
+        },
+        "mr_mac": {
+            "title": "Mr. Mac's Classroom",
+            "keywords": ["mr mac", "maccarthy", "math", "science", "classroom"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "mac.JPG", // Make sure this matches your actual image filename
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Spin completely around to face the exit door
+                    "type": "scene",
+                    "text": "Return to Main Courtyard",
+                    "sceneId": "main_courtyard"
+                }
+            ]
+        },
+        "sixth_grade_pod": {
+            "title": "6th Grade Pod",
+            "keywords": ["6th grade pod", "pod", "sixth grade", "hallway", "classrooms"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "6pod.JPG", // Ensure this filename matches your actual image asset
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Spin around to head back down the corridor
+                    "type": "scene",
+                    "text": "Return to Tudisco Hall",
+                    "sceneId": "tudisco_hall"
+                }
+            ]
         }
     };
     
     const sceneExpectations = {
         "upper": "explanation placeholder.",
         "cafeteria": "Cafeteria: Clean up your trash after eating. Return trays to the designated area.",
-        "basketball_courts": "placeholder."
+        "basketball_courts": "placeholder.",
+        "tudisco_hall": "In the Halls<br><br>Walk at all times using the right side of the hall<br>Keep hands and feet to self<br>No play fighting<br>Stash trash and recycling in provided bins<br>Use safe language/voice<br>Give your name when asked<br>Carry a pass during class time"
     };
 
     // --- INITIALIZE PANNELLUM ---
