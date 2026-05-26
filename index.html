@@ -862,7 +862,7 @@
                     "yaw": 340, // Facing completely around to head back up toward the ramp entry point
                     "type": "scene",
                     "text": "Go Back",
-                    "sceneId": "continue_to_lower_level"
+                    "sceneId": "lower_level2"
                 },
                 {
                     "pitch": -9,
@@ -1133,10 +1133,13 @@
 
             // Click handler for routing
             // Click handler for routing
+            // FIND THIS BLOCK AT THE END OF THE renderResults FUNCTION:
             item.addEventListener('click', () => {
                 requestFullScreen(); // Ensure fullscreen
-                // Fixes the tilt by forcing pitch to 0 and yaw to 0 on every transition!
-                viewer.loadScene(match.sceneId, 0, 0, 110);
+                
+                // FIX THIS LINE: Change 0, 0 to undefined, undefined
+                viewer.loadScene(match.sceneId, undefined, undefined, 110);
+                
                 searchInput.value = ''; // Clear input
                 searchResults.classList.remove('active'); // Hide dropdown
                 searchInput.blur(); // Remove focus
