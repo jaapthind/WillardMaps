@@ -623,7 +623,8 @@
                     "yaw": 270,
                     "type": "scene",
                     "text": "Go to Main Gate 2",
-                    "sceneId": "main_gate_2"
+                    "sceneId": "main_gate_2",
+                     "targetYaw": 100
                 }
                
             ]
@@ -709,6 +710,14 @@
                     "type": "scene",
                     "text": "Return to Main Gate 1",
                     "sceneId": "main_gate_1"
+                },
+                {
+                    "pitch": -6,                  // <-- ADD THIS HOTSPOT
+                    "yaw": 180,                  // Places it straight ahead in your field of view
+                    "type": "scene",
+                    "text": "Go Inside Entrance",
+                    "sceneId": "entrance_inside",
+                    "targetYaw": 0               // Forces the next scene to load at 0 degrees
                 }
                 
             ]
@@ -968,7 +977,16 @@
                     "yaw": 185, // Turns 115 degrees left (360 - 115 = 295) to line back up with the landing
                     "type": "scene",
                     "text": "Return to Top of Stairs Landing",
-                    "sceneId": "top_of_stairs"
+                    "sceneId": "top_of_stairs",
+                    "targetYaw": 50
+                },
+                {
+                    "pitch": -10,                 // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": 5,                     // Adjusts where the icon floats in the view
+                    "type": "scene",
+                    "text": "Walk Forward Down Hallway",
+                    "sceneId": "tudisco_hall",
+                   "targetYaw": 50
                 }
             ]
         },
@@ -988,6 +1006,24 @@
                     "text": "Exit to Main Courtyard",
                     "sceneId": "main_courtyard",
                      "targetYaw": -30
+                }
+            ]
+        },
+        "entrance_inside": {
+            "title": "Inside Entrance",
+            "keywords": ["inside", "entrance", "lobby", "doors"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,                             // Defaults to exactly forward layout orientation
+            "type": "equirectangular",
+            "panorama": "entrance.JPG",    // Make sure this filename matches your image asset
+            "hotSpots": 
+                {
+                    "pitch": -8,
+                    "yaw": 180,                   // Spin 180° around to point back out the door
+                    "type": "scene",
+                    "text": "Exit to Main Gate 2",
+                    "sceneId": "main_gate_2"
                 }
             ]
         }
