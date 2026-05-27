@@ -1548,6 +1548,10 @@
     };
 
     // --- INITIALIZE PANNELLUM ---
+    // WebGL Patch: Forces Chromebooks to allocate memory efficiently for large textures
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl', { powerPreference: "high-performance", failIfMajorPerformanceCaveat: false });
+   // --- INITIALIZE PANNELLUM ---
     const viewer = pannellum.viewer('panorama', {
         "default": {
             "firstScene": "telegraph_corner",
@@ -1557,6 +1561,7 @@
             "compass": true,
             "showControls": false, 
             "cubeMapZoom": 1, // <-- PASTE RIGHT HERE FOR RADICAL INSTANT LOADING
+            "updateInterval": 10, // <-- ADD THIS: Forces faster canvas render cycles on ChromeOS
             "defaultPitch": 0,    // <-- ADD THIS TO LEVEL THE HORIZON
             "defaultYaw": 0
         },
@@ -1724,11 +1729,7 @@
     });
 
     // STEM Feature: Keyboard controls
-    document.addEventListener('keydown', (e) => {
-        if(e.key === 'f') {
-            viewer.toggleFullscreen();
-        }
-    });
+   
     
     function openLiquidModal(title, body) {
         document.getElementById('modal-title').innerHTML = title;
