@@ -631,7 +631,8 @@
                     "yaw": 190,                   // Placed at your original heading heading inside
                     "type": "scene",
                     "text": "Go Inside the Gate",
-                    "sceneId": "inside_of_gate"
+                    "sceneId": "inside_of_gate",
+                    "targetYaw": 180
                 }
                
             ]
@@ -929,6 +930,13 @@
                     "text": "Continue Down Hallway (Middle)",
                     "sceneId": "lower_level_middle",
                     "targetYaw": 215
+                },
+                {
+                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": -110,                 // Exactly 110 degrees left of the default 0° view
+                    "type": "scene",
+                    "text": "Go Outside",
+                    "sceneId": "outside"         // Replace "outside" with your specific destination sceneId if different
                 }
             ]
         },
@@ -1337,10 +1345,60 @@
             "hotSpots": [
                 {
                     "pitch": -8,
-                    "yaw": 180, // Spin completely around to step back out to the front gate
+                    "yaw": 0, // Spin completely around to step back out to the front gate
                     "type": "scene",
                     "text": "Return to Main Gate 1",
                     "sceneId": "main_gate_1"
+                },
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Spin completely around to step back out to the front gate
+                    "type": "scene",
+                    "text": "Go to main courtyard",
+                    "sceneId": "main_courtyard"
+                },
+                {
+                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": -100,                 // Exactly 100 degrees left of the default 0° view
+                    "type": "scene",
+                    "text": "Go to Office",
+                    "sceneId": "office"
+                }
+            ]
+        },
+        "outside": {
+            "title": "Outside Area",
+            "keywords": ["outside", "exterior", "yard", "exit"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "gooutside.JPG", // Using your requested image file
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Spin around completely to step back inside
+                    "type": "scene",
+                    "text": "Return to Lower Level Hallway",
+                    "sceneId": "lower_level"
+                }
+            ]
+        },
+        "office": {
+            "title": "Main Office",
+            "keywords": ["office", "administration", "desk", "inside"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "officemain.JPG", // Ensure this matches your panorama file name asset
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Spin completely around to face the door exit
+                    "type": "scene",
+                    "text": "Exit to Inside of Gate",
+                    "sceneId": "inside_of_gate"
                 }
             ]
         }
