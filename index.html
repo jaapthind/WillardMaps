@@ -522,11 +522,13 @@
                    "yaw": -15, // Points straight ahead down the numbers line toward the gym
                     "type": "scene",
                     "text": "Continue to Gym",
-                    "sceneId": "continue_to_gym"
+                    "sceneId": "continue_to_gym",
+                    "targetYaw": 180
+                    
                 },
                 {
-                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
-                    "yaw": 90,                  // Positioned exactly 50 degrees right of the 240° reference point
+                    "pitch": -9,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": 40,                  // Positioned exactly 50 degrees right of the 240° reference point
                     "type": "scene",
                     "text": "Go to Garden",
                     "sceneId": "garden"
@@ -1242,7 +1244,7 @@
             "hotSpots": [
                 {
                     "pitch": -8,
-                    "yaw": 180, // Spin completely around to step back out
+                    "yaw": 145, // Spin completely around to step back out
                     "type": "scene",
                     "text": "Return to PE Numbers",
                     "sceneId": "pe_numbers"
@@ -1260,10 +1262,60 @@
             "hotSpots": [
                 {
                     "pitch": -8,
-                    "yaw": 180, // Spin around to head back toward the gym path entrance
+                    "yaw": 225, // Spin around to head back toward the gym path entrance
                     "type": "scene",
                     "text": "Go to Gym Path",
                     "sceneId": "continue_to_gym"
+                },
+                {
+                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": 40,                    // Exactly 40 degrees right of the 0° loading view
+                    "type": "scene",
+                    "text": "Enter Big Gym",
+                    "sceneId": "big_gym"
+                },
+                {
+                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": 0,                     // Exactly straight ahead (0 degrees)
+                    "type": "scene",
+                    "text": "Enter Little Gym",
+                    "sceneId": "little_gym"
+                }
+            ]
+        },
+        "big_gym": {
+            "title": "Big Gym",
+            "keywords": ["big gym", "gymnasium", "hoops", "basketball", "inside"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "biggym.JPG", // Make sure this matches your panorama image filename
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Spin completely around to face the exit doors
+                    "type": "scene",
+                    "text": "Exit to Main Area",
+                    "sceneId": "main_area"
+                }
+            ]
+        },
+        "little_gym": {
+            "title": "Little Gym",
+            "keywords": ["little gym", "gymnasium", "inside", "sports"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "littlegym.JPG", // Ensure this matches your actual panorama image filename
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Spin completely around to face the doors heading back out
+                    "type": "scene",
+                    "text": "Exit to Main Area",
+                    "sceneId": "main_area"
                 }
             ]
         }
