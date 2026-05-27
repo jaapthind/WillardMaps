@@ -1420,6 +1420,13 @@
                     "type": "scene",
                     "text": "Exit to Inside of Gate",
                     "sceneId": "inside_of_gate"
+                },
+                {
+                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": -20,                     // Straight ahead into the inner office area
+                    "type": "scene",
+                    "text": "Go to Inner Office",
+                    "sceneId": "office_2"         // Links to the new scene below
                 }
             ]
         },
@@ -1438,6 +1445,13 @@
                     "type": "scene",
                     "text": "Return to Inside Entrance",
                     "sceneId": "entrance_inside"
+                },
+                {
+                    "pitch": -8,
+                    "yaw": 180,                   // <-- ADD THIS HOTSPOT OBJECT
+                    "type": "scene",
+                    "text": "Return to Office 2",
+                    "sceneId": "office_2"         // Links directly back to your office 2 scene
                 }
             ]
         },
@@ -1448,10 +1462,48 @@
             "pitch": 0,
             "yaw": 0,
             "type": "equirectangular",
-            "panorama": "gympath.JPG", // Using your requested image file
+            "panorama": "gympath.JPG", 
             "hotSpots": [
-                
-            ] // Leaving this empty for now as requested
+                {
+                    "pitch": -6,
+                    "yaw": 0,                     // Straight ahead down the path
+                    "type": "scene",
+                    "text": "Go to PE Numbers",
+                    "sceneId": "pe_numbers"       // Links forward to your PE numbers spot
+                },
+                {
+                    "pitch": -8,
+                    "yaw": 180,                   // Completely turned around
+                    "type": "scene",
+                    "text": "Return to Outside Area",
+                    "sceneId": "outside"          // Links back to the outside hallway exit
+                }
+            ]
+        },
+        "office_2": {
+            "title": "Office 2",
+            "keywords": ["inner office", "administration", "back office"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "office2.JPG", // Make sure this matches your image asset filename
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180,                   // Hotspot 1: Face backwards to return
+                    "type": "scene",
+                    "text": "Return to Main Office",
+                    "sceneId": "office"           // Links back to the first office scene
+                },
+                {
+                    "pitch": -6,                  // Hotspot 2: At a different location (e.g., 90° right)
+                    "yaw": 90,                    
+                    "type": "scene",
+                    "text": "Go to Office Back",
+                    "sceneId": "officeback"       // Links to your officeback scene ID
+                }
+            ]
         }
     };
     
