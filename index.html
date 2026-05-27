@@ -436,6 +436,14 @@
                     "type": "scene",
                     "text": "Go to Front of D Building",
                     "sceneId": "front_of_d_building"
+                },
+                {
+                    "pitch": -8,
+                    "yaw": 55,
+                    "type": "scene",
+                    "text": "Go to Inside Entrance",
+                    "sceneId": "entrance_inside",
+                  "targetYaw": 180
                 }
             ]
         },
@@ -452,9 +460,9 @@
             "hotSpots": [
                 {
                     "pitch": 10,
-                    "yaw": 180,
+                    "yaw": 285,
                     "type": "scene",
-                    "text": "Return to Upper Courtyard",
+                    "text": "Go to Upper Courtyard",
                     "sceneId": "upper"
                 },
                 {
@@ -463,7 +471,22 @@
                     "type": "scene",
                     "text": "Navigate to Basketball Courts",
                     "sceneId": "basketball_courts"
+                },
+                {
+                    "pitch": 10,
+                    "yaw": 180,
+                    "type": "scene",
+                    "text": "Go to Bike Racks",
+                    "sceneId": "bike_racks"
+                },
+                {
+                    "pitch": 10,
+                    "yaw": 230,
+                    "type": "scene",
+                    "text": "Go to Front of D building",
+                    "sceneId": "front_of_d_building"
                 }
+                
             ]
         },
 
@@ -501,6 +524,13 @@
                     "type": "scene",
                     "text": "Navigate to PE Numbers",
                     "sceneId": "pe_numbers"
+                },
+                {
+                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT ONLY
+                    "yaw": 105,                   // Exactly 105 degrees right of the main view
+                    "type": "scene",
+                    "text": "Go to Main Courtyard",
+                    "sceneId": "main_courtyard"   // Links directly back to your main courtyard scene
                 }
             ]
         },
@@ -659,7 +689,8 @@
                     "yaw": 55, // Positioned 80 degrees right from the default scene load view
                     "type": "scene",
                     "text": "Go to Basketball Courts",
-                    "sceneId": "basketball_courts"
+                    "sceneId": "basketball_courts",
+                    "targetYaw": -90
                 },
                 {
                     "pitch": -6,
@@ -708,7 +739,7 @@
                     "pitch": -8,
                     "yaw": 25, // Points 180° back around to return to the building
                     "type": "scene",
-                    "text": "Return to Front of D Building",
+                    "text": "Go to Front of D Building",
                     "sceneId": "front_of_d_building"
                 },
                 {
@@ -740,7 +771,7 @@
                     "pitch": -11,
                     "yaw": 105,
                     "type": "scene",
-                    "text": "Return to Main Gate 1",
+                    "text": "Go to Main Gate 1",
                     "sceneId": "main_gate_1"
                 },
                 {
@@ -799,7 +830,7 @@
                     "pitch": -10,
                     "yaw": 165, // Points towards a side path that naturally leads to the bike racks
                     "type": "scene",
-                    "text": "Return to Bike Racks",
+                    "text": "Go to Bike Racks",
                     "sceneId": "bike_racks"
                 }
             ]
@@ -835,7 +866,7 @@
                     "pitch": -8,
                     "yaw": 90, // Turns completely around to go back to the PE numbers
                     "type": "scene",
-                    "text": "Return to PE Numbers",
+                    "text": "Go to PE Numbers",
                     "sceneId": "pe_numbers"
                 },
                 {
@@ -902,7 +933,7 @@
                     "pitch": 12,  // Tilted up to look back up the stairs/ramp
                     "yaw": 0, // Facing completely around to head back up
                     "type": "scene",
-                    "text": "Return to Tudisco Hall",
+                    "text": "Go to Tudisco Hall",
                     "sceneId": "tudisco_hall"
                 },
                 {
