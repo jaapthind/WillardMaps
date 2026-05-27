@@ -932,6 +932,13 @@
                     "type": "scene",
                     "text": "Go Up to Tudisco Hall",
                     "sceneId": "go_up_to_tudisco_hall"
+                },
+                {
+                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": -100,                 // Exactly 100 degrees left of the default 0° view
+                    "type": "scene",
+                    "text": "Go to Mr. Chinn's Classroom",
+                    "sceneId": "mr_chinn"
                 }
             ]
         },
@@ -1124,7 +1131,8 @@
                     "yaw": 180, // Spin completely around to face the door exit
                     "type": "scene",
                     "text": "Exit to 6th Grade Pod",
-                    "sceneId": "sixth_grade_pod"
+                    "sceneId": "sixth_grade_pod",
+                    "targetYaw": 180
                 }
             ]
         },
@@ -1142,7 +1150,8 @@
                     "yaw": 180, // Spin completely around to face the doorway out
                     "type": "scene",
                     "text": "Exit to 6th Grade Pod",
-                    "sceneId": "sixth_grade_pod"
+                    "sceneId": "sixth_grade_pod",
+                    "targetYaw": 180
                 }
             ]
         },
@@ -1181,14 +1190,38 @@
                     "sceneId": "main_courtyard"
                 }
             ]
+        },
+        "mr_chinn": {
+            "title": "Mr. Chinn's Classroom",
+            "keywords": ["ryan chinn", "chinn", "math", "science", "classroom"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "chinn.JPG", // Make sure this matches your panorama file name asset
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Spin completely around to face the doorway exit
+                    "type": "scene",
+                    "text": "Return to Lower Level Middle",
+                    "sceneId": "lower_level_middle"
+                }
+            ]
         }
     };
     
     const sceneExpectations = {
         "upper": "explanation placeholder.",
-        "cafeteria": "Cafeteria: Clean up your trash after eating. Return trays to the designated area.",
+        "cafeteria": "Lunch Time<br><br>Walk to lunch room<br>Wait your turn<br>Keep in line order<br>Eat in seating areas and clean up when done<br>Keep phone off and away<br>Include others in activities<br>Invite a peer to eat with you<br>Separate recyclables, Compost, & Trash",
         "basketball_courts": "placeholder.",
-        "tudisco_hall": "In the Halls<br><br>Walk at all times using the right side of the hall<br>Keep hands and feet to self<br>No play fighting<br>Stash trash and recycling in provided bins<br>Use safe language/voice<br>Give your name when asked<br>Carry a pass during class time"
+        "tudisco_hall": "In the Halls<br><br>Walk at all times using the right side of the hall<br>Keep hands and feet to self<br>No play fighting<br>Stash trash and recycling in provided bins<br>Use safe language/voice<br>Give your name when asked<br>Carry a pass during class time",
+        "main_gate_1": "Entering School<br><br>Welcome your peers<br>Walk all wheeled items while on campus<br>Enter buildings only after morning bell<br>Use safe language/voice<br>Make space for others",
+        "main_gate_2": "Entering School<br><br>Welcome your peers<br>Walk all wheeled items while on campus<br>Enter buildings only after morning bell<br>Use safe language/voice<br>Make space for others",
+        "lower_field": "Yard and Field<br><br>No play fighting<br>Eat in designated spaces<br>No running in upper quad<br>Sports/Activities:  No Crocs or slides<br>Include others in games<br>Be a good sport<br>Use safe language<br>Respond to adults<br>Return borrowed equipment",
+        "grass": "Yard and Field<br><br>No play fighting<br>Eat in designated spaces<br>No running in upper quad<br>Sports/Activities:  No Crocs or slides<br>Include others in games<br>Be a good sport<br>Use safe language<br>Respond to adults<br>Return borrowed equipment",
+        "baseball_diamond": "Yard and Field<br><br>No play fighting<br>Eat in designated spaces<br>No running in upper quad<br>Sports/Activities:  No Crocs or slides<br>Include others in games<br>Be a good sport<br>Use safe language<br>Respond to adults<br>Return borrowed equipment",
+        "basketball_courts": "Yard and Field<br><br>No play fighting<br>Eat in designated spaces<br>No running in upper quad<br>Sports/Activities:  No Crocs or slides<br>Include others in games<br>Be a good sport<br>Use safe language<br>Respond to adults<br>Return borrowed equipment"
     };
 
     // --- INITIALIZE PANNELLUM ---
