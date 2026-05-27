@@ -854,6 +854,14 @@
                     "type": "scene",
                     "text": "Go to 6th Grade Pod",
                     "sceneId": "sixth_grade_pod"
+                },
+                {
+                    "pitch": -11, // <-- Tilted down as requested
+                    "yaw": -20,    // <-- Facing straight ahead from the default entrance view
+                    "type": "scene",
+                    "text": "Go to Upper Level",
+                    "sceneId": "tudisco_hall_back",
+                    "targetYaw": 180
                 }
             ]
         },
@@ -1098,7 +1106,8 @@
                     "yaw": 40,                   // Positioned exactly 40 degrees right of center view
                     "type": "scene",
                     "text": "Go to Ms. Arthur's Classroom",
-                    "sceneId": "ms_arthur"
+                    "sceneId": "ms_arthur",
+                    "targetYaw": 180
                 },
                 {
                     "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
@@ -1127,7 +1136,7 @@
             "hotSpots": [
                 {
                     "pitch": -8,
-                    "yaw": 180, // Spin completely around to face the door exit
+                    "yaw": 0, // Spin completely around to face the door exit
                     "type": "scene",
                     "text": "Exit to 6th Grade Pod",
                     "sceneId": "sixth_grade_pod",
