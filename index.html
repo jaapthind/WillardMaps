@@ -538,7 +538,8 @@
                     "yaw": 260, 
                     "type": "scene",
                     "text": "Go to path",
-                    "sceneId": "path"
+                    "sceneId": "path",
+                    "targetYaw": 45
                 }
             ]
         },
@@ -1433,8 +1434,8 @@
             ]
         },
         "officeback": {
-            "title": "New Room",
-            "keywords": ["inside", "room", "hallway"],
+            "title": "Office BAck",
+            "keywords": ["inside", "room", "hallway", "back of office"],
             "hfov": 110,
             "pitch": 0,
             "yaw": 0,
@@ -1453,7 +1454,8 @@
                     "yaw": 180,                   // <-- ADD THIS HOTSPOT OBJECT
                     "type": "scene",
                     "text": "Return to Office 2",
-                    "sceneId": "office_2"         // Links directly back to your office 2 scene
+                    "sceneId": "office_2",
+                    "targetYaw": -45  // Links directly back to your office 2 scene
                 }
             ]
         },
@@ -1468,23 +1470,32 @@
             "hotSpots": [
                 {
                     "pitch": -6,
-                    "yaw": 0,                     // Straight ahead down the path
+                    "yaw": -93,                     // Straight ahead down the path
                     "type": "scene",
                     "text": "Go to PE Numbers",
                     "sceneId": "pe_numbers"       // Links forward to your PE numbers spot
                 },
                 {
                     "pitch": -8,
-                    "yaw": 180,                   // Completely turned around
+                    "yaw": 70,                   // Completely turned around
                     "type": "scene",
                     "text": "Return to Outside Area",
-                    "sceneId": "outside"          // Links back to the outside hallway exit
+                    "sceneId": "outside",
+                    "targetYaw": 180 // Links back to the outside hallway exit
+                },
+                {
+                    "pitch": -8,
+                    "yaw": 55,                   // Completely turned around
+                    "type": "scene",
+                    "text": "Go up stairs",
+                    "sceneId": "stairs_to_tudisco"
+                     // Links back to the outside hallway exit
                 }
             ]
         },
         "office_2": {
             "title": "Office 2",
-            "keywords": ["inner office", "administration", "back office"],
+            "keywords": ["inner office", "administration", "middle office"],
             "hfov": 110,
             "pitch": 0,
             "yaw": 0,
@@ -1493,19 +1504,33 @@
             "hotSpots": [
                 {
                     "pitch": -8,
-                    "yaw": 180,                   // Hotspot 1: Face backwards to return
+                    "yaw": 0,                   // Hotspot 1: Face backwards to return
                     "type": "scene",
                     "text": "Return to Main Office",
                     "sceneId": "office"           // Links back to the first office scene
                 },
                 {
-                    "pitch": -6,                  // Hotspot 2: At a different location (e.g., 90° right)
-                    "yaw": 90,                    
+                    "pitch": -8,                  // Hotspot 2: At a different location (e.g., 90° right)
+                    "yaw": 180,                    
                     "type": "scene",
                     "text": "Go to Office Back",
-                    "sceneId": "officeback"       // Links to your officeback scene ID
+                    "sceneId": "officeback",
+                    "targetYaw": -40 // Links to your officeback scene ID
                 }
             ]
+        },
+        "stairs_to_tudisco": {
+            "title": "Stairs to Tudisco",
+            "keywords": ["stairs", "staircase", "tudisco", "hallway", "steps"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "stairs2.JPG", // Using your requested image file
+            "hotSpots": [
+
+                
+            ] // Leaving this empty for now as requested
         }
     };
     
