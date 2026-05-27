@@ -1114,7 +1114,8 @@
                     "yaw": -10,                   // Exactly 10 degrees left of the default 0° view
                     "type": "scene",
                     "text": "Go to Back of office",     // Change this text to match your destination name
-                    "sceneId": "officeback"      // Change this to match the destination sceneId below
+                    "sceneId": "officeback",
+                    "targetYaw": 140// Change this to match the destination sceneId below
                 }
             ]
         },
@@ -1375,14 +1376,15 @@
                 },
                 {
                     "pitch": -8,
-                    "yaw": 180, // Spin completely around to step back out to the front gate
+                    "yaw": 190, // Spin completely around to step back out to the front gate
                     "type": "scene",
                     "text": "Go to main courtyard",
-                    "sceneId": "main_courtyard"
+                    "sceneId": "main_courtyard",
+                    "targetYaw": 51
                 },
                 {
-                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
-                    "yaw": -100,                 // Exactly 100 degrees left of the default 0° view
+                    "pitch": -3,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": -90,                 // Exactly 100 degrees left of the default 0° view
                     "type": "scene",
                     "text": "Go to Office",
                     "sceneId": "office"
@@ -1425,10 +1427,11 @@
             "hotSpots": [
                 {
                     "pitch": -8,
-                    "yaw": 180, // Spin completely around to face the door exit
+                    "yaw": 225, // Spin completely around to face the door exit
                     "type": "scene",
                     "text": "Exit to Inside of Gate",
-                    "sceneId": "inside_of_gate"
+                    "sceneId": "inside_of_gate",
+                    "targetYaw": 100
                 },
                 {
                     "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
@@ -1452,18 +1455,18 @@
             "hotSpots": [
                 {
                     "pitch": -8,
-                    "yaw": 180, // Spin completely around to face the doors heading back out
+                    "yaw": 320, // Spin completely around to face the doors heading back out
                     "type": "scene",
                     "text": "Return to Inside Entrance",
                     "sceneId": "entrance_inside"
                 },
                 {
                     "pitch": -8,
-                    "yaw": 180,                   // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": 140,                   // <-- ADD THIS HOTSPOT OBJECT
                     "type": "scene",
                     "text": "Return to Office 2",
                     "sceneId": "office_2",
-                    "targetYaw": -45  // Links directly back to your office 2 scene
+                    "targetYaw": -25  // Links directly back to your office 2 scene
                 }
             ]
         },
