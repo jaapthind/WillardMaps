@@ -619,20 +619,19 @@
                     "sceneId": "midway"
                 },
                 {
-                    "pitch": -6,
-                    "yaw": 190,
-                    "type": "scene",
-                    "text": "Go to Main Courtyard",
-                    "sceneId": "main_courtyard",
-                    "targetYaw": 60
-                },
-                {
                     "pitch": -8,
                     "yaw": 270,
                     "type": "scene",
                     "text": "Go to Main Gate 2",
                     "sceneId": "main_gate_2",
                      "targetYaw": 100
+                },
+                {
+                    "pitch": -6,                  // <-- NEW HOTSPOT: Replaces the old main courtyard link
+                    "yaw": 190,                   // Placed at your original heading heading inside
+                    "type": "scene",
+                    "text": "Go Inside the Gate",
+                    "sceneId": "inside_of_gate"
                 }
                
             ]
@@ -1078,6 +1077,13 @@
                     "type": "scene",
                     "text": "Exit to Main Gate 2",
                     "sceneId": "main_gate_2"
+                },
+                {
+                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": 10,                    // Exactly 10 degrees right of the main 0° view
+                    "type": "scene",
+                    "text": "Go to Upper Courtyard",
+                    "sceneId": "upper"            // Links directly to your existing upper courtyard scene
                 }
             ]
         },
@@ -1268,7 +1274,7 @@
                     "sceneId": "continue_to_gym"
                 },
                 {
-                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "pitch": -9,                  // <-- ADD THIS HOTSPOT OBJECT
                     "yaw": 40,                    // Exactly 40 degrees right of the 0° loading view
                     "type": "scene",
                     "text": "Enter Big Gym",
@@ -1276,10 +1282,11 @@
                 },
                 {
                     "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
-                    "yaw": 0,                     // Exactly straight ahead (0 degrees)
+                    "yaw": 20,                     // Exactly straight ahead (0 degrees)
                     "type": "scene",
                     "text": "Enter Little Gym",
-                    "sceneId": "little_gym"
+                    "sceneId": "little_gym",
+                    "targetYaw": 180
                 }
             ]
         },
@@ -1293,8 +1300,8 @@
             "panorama": "biggym.JPG", // Make sure this matches your panorama image filename
             "hotSpots": [
                 {
-                    "pitch": -8,
-                    "yaw": 180, // Spin completely around to face the exit doors
+                    "pitch": -4,
+                    "yaw": 145, // Spin completely around to face the exit doors
                     "type": "scene",
                     "text": "Exit to Main Area",
                     "sceneId": "main_area"
@@ -1312,10 +1319,28 @@
             "hotSpots": [
                 {
                     "pitch": -8,
-                    "yaw": 180, // Spin completely around to face the doors heading back out
+                    "yaw": 0, // Spin completely around to face the doors heading back out
                     "type": "scene",
                     "text": "Exit to Main Area",
                     "sceneId": "main_area"
+                }
+            ]
+        },
+        "inside_of_gate": {
+            "title": "Inside of Gate",
+            "keywords": ["inside", "gate", "entrance", "walkway"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "insidegate.JPG", // Make sure this matches your image filename asset
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Spin completely around to step back out to the front gate
+                    "type": "scene",
+                    "text": "Return to Main Gate 1",
+                    "sceneId": "main_gate_1"
                 }
             ]
         }
