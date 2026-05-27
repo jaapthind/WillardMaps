@@ -532,6 +532,13 @@
                     "type": "scene",
                     "text": "Go to Garden",
                     "sceneId": "garden"
+                },
+                {
+                    "pitch": 9,
+                    "yaw": 260, 
+                    "type": "scene",
+                    "text": "Go to path",
+                    "sceneId": "path"
                 }
             ]
         },
@@ -1092,6 +1099,13 @@
                     "type": "scene",
                     "text": "Go to Upper Courtyard",
                     "sceneId": "upper"            // Links directly to your existing upper courtyard scene
+                },
+                {
+                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": -10,                   // Exactly 10 degrees left of the default 0° view
+                    "type": "scene",
+                    "text": "Go to Back of office",     // Change this text to match your destination name
+                    "sceneId": "officeback"      // Change this to match the destination sceneId below
                 }
             ]
         },
@@ -1381,6 +1395,13 @@
                     "type": "scene",
                     "text": "Return to Lower Level Hallway",
                     "sceneId": "lower_level"
+                },
+                {
+                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": 0,                     // Adjust this number if you want it to point in a specific direction
+                    "type": "scene",
+                    "text": "Go to Path",
+                    "sceneId": "path"             // Links directly to your new "path" scene
                 }
             ]
         },
@@ -1401,6 +1422,36 @@
                     "sceneId": "inside_of_gate"
                 }
             ]
+        },
+        "officeback": {
+            "title": "New Room",
+            "keywords": ["inside", "room", "hallway"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "office3.JPG", // Make sure this matches your actual image filename
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Spin completely around to face the doors heading back out
+                    "type": "scene",
+                    "text": "Return to Inside Entrance",
+                    "sceneId": "entrance_inside"
+                }
+            ]
+        },
+        "path": {
+            "title": "Path",
+            "keywords": ["path", "walkway", "outside", "connector"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "gympath.JPG", // Using your requested image file
+            "hotSpots": [
+                
+            ] // Leaving this empty for now as requested
         }
     };
     
