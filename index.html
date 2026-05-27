@@ -661,6 +661,13 @@
                     "targetYaw": 180
                 },
                 {
+                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": -20,                  // Exactly 20 degrees left of the default 0° view
+                    "type": "scene",
+                    "text": "Go to Ms. Faur's Classroom",
+                    "sceneId": "ms_faur"
+                },
+                {
                     "pitch": -6,
                     "yaw": 160, // <-- Positioned exactly 160 degrees right from the loading angle
                     "type": "scene",
@@ -1076,7 +1083,101 @@
                     "yaw": 180, // Spin around to head back down the corridor
                     "type": "scene",
                     "text": "Return to Tudisco Hall",
-                    "sceneId": "tudisco_hall"
+                    "sceneId": "tudisco_hall",
+                    "targetYaw": 100
+                },
+                {
+                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": 40,                   // Positioned exactly 40 degrees right of center view
+                    "type": "scene",
+                    "text": "Go to Ms. Arthur's Classroom",
+                    "sceneId": "ms_arthur"
+                },
+                {
+                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": 0,                    // Exactly straight ahead (0 degrees)
+                    "type": "scene",
+                    "text": "Go to Ms. Milner's Classroom",
+                    "sceneId": "ms_milner"
+                },
+                {
+                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": -80,                  // Exactly 80 degrees left of normal view (0 - 80)
+                    "type": "scene",
+                    "text": "Go to Ms. Paraiso's Classroom",
+                    "sceneId": "ms_paraiso"
+                }
+            ]
+        },
+        "ms_arthur": {
+            "title": "Ms. Arthur's Classroom",
+            "keywords": ["sharon arthur", "arthur", "math", "science", "classroom"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "arthur.JPG", // Make sure this matches your panorama filename
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Spin completely around to face the door exit
+                    "type": "scene",
+                    "text": "Exit to 6th Grade Pod",
+                    "sceneId": "sixth_grade_pod"
+                }
+            ]
+        },
+        "ms_milner": {
+            "title": "Ms. Milner's Classroom",
+            "keywords": ["denise milner", "milner", "english", "history", "classroom"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "milner.JPG", // Ensure this matches your image filename
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Spin completely around to face the doorway out
+                    "type": "scene",
+                    "text": "Exit to 6th Grade Pod",
+                    "sceneId": "sixth_grade_pod"
+                }
+            ]
+        },
+        "ms_paraiso": {
+            "title": "Ms. Paraiso's Classroom",
+            "keywords": ["jo paraiso", "paraiso", "english", "classroom"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "paraiso.JPG", // Ensure this matches your panorama file name
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Spin around to face the door exit
+                    "type": "scene",
+                    "text": "Exit to 6th Grade Pod",
+                    "sceneId": "sixth_grade_pod"
+                }
+            ]
+        },
+        "ms_faur": {
+            "title": "Ms. Faur's Classroom",
+            "keywords": ["aryn faur", "faur", "english", "history", "classroom"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "faur.JPG", // Make sure this matches your panorama file name
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Spin completely around to face the doorway exit
+                    "type": "scene",
+                    "text": "Return to Main Courtyard",
+                    "sceneId": "main_courtyard"
                 }
             ]
         }
