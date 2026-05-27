@@ -523,6 +523,13 @@
                     "type": "scene",
                     "text": "Continue to Gym",
                     "sceneId": "continue_to_gym"
+                },
+                {
+                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": 290,                  // Positioned exactly 50 degrees right of the 240° reference point
+                    "type": "scene",
+                    "text": "Go to Garden",
+                    "sceneId": "garden"
                 }
             ]
         },
@@ -820,6 +827,13 @@
                     "type": "scene",
                     "text": "Return to PE Numbers",
                     "sceneId": "pe_numbers"
+                },
+                {
+                    "pitch": -6,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": 180,                  // Spun completely around 180 degrees
+                    "type": "scene",
+                    "text": "Go to Main Area",
+                    "sceneId": "main_area"       // Connects to your brand new scene
                 }
             ]
         },
@@ -1016,7 +1030,7 @@
                     "type": "scene",
                     "text": "Return to Top of Stairs Landing",
                     "sceneId": "top_of_stairs",
-                    "targetYaw": 50
+                    "targetYaw": -40
                 },
                 {
                     "pitch": -10,                 // <-- ADD THIS HOTSPOT OBJECT
@@ -1214,6 +1228,42 @@
                     "type": "scene",
                     "text": "Return to Lower Level Middle",
                     "sceneId": "lower_level_middle"
+                }
+            ]
+        },
+        "garden": {
+            "title": "Willard Garden",
+            "keywords": ["garden", "plants", "greenery", "outside", "nature"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "garden.JPG", // Make sure this matches your image asset name exactly
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Spin completely around to step back out
+                    "type": "scene",
+                    "text": "Return to PE Numbers",
+                    "sceneId": "pe_numbers"
+                }
+            ]
+        },
+        "main_area": {
+            "title": "Main Area",
+            "keywords": ["main area", "quad", "outside", "center"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "main_area.JPG", // Make sure this matches your panorama image filename
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180, // Spin around to head back toward the gym path entrance
+                    "type": "scene",
+                    "text": "Go to Gym Path",
+                    "sceneId": "continue_to_gym"
                 }
             ]
         }
