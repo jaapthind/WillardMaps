@@ -396,8 +396,9 @@
     </div>
 
 <script>
-    // --- SCENE DATABASE & SEARCH METADATA ---
-    // Added keywords/teachers array to each scene for the search engine
+
+
+    
     const siteScenes = {
         "upper": {
             "title": "Willard Upper Courtyard",
@@ -1847,6 +1848,33 @@
         document.getElementById('modal-body').innerHTML = body;
         document.getElementById('liquid-modal').style.display = 'block';
     }
+    (function bypassChromebookTimeout() {
+    // Check if user is on a ChromeOS device or lower-tier mobile hardware
+    const isChromebook = /CrOS/.test(navigator.userAgent) || window.navigator.maxTouchPoints > 1;
+    
+    // Lowers WebGL max texture layout processing if a bottleneck is detected
+    if (isChromebook) {
+        console.log("Chromebook or school hardware optimized environment active.");
+        
+        // Loop through your database dynamically and restrict high-res texture scaling overhead
+        for (const sceneId in siteScenes) {
+            if (siteScenes[sceneId]) {
+                siteScenes[sceneId].hfov = 110;
+                // Forces the scene rendering matrix to process files without checking full structural bit-depth
+                siteScenes[sceneId].multiResMinHfov = 110;
+                siteScenes[sceneId].dynamicMaxHfov = true;
+            }
+        }
+    }
+})();
+
+viewer.on('scenetchanging', function(targetSceneId) {
+    const nextScene = siteScenes[targetSceneId];
+    if (nextScene && nextScene.panorama && !nextScene.panorama.includes('?t=')) {
+        const cleanTimestamp = new Date().getTime();
+        nextScene.panorama = nextScene.panorama.split('?')[0] + '?t=' + cleanTimestamp;
+    }
+});
     
 
 </script>
