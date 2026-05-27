@@ -417,6 +417,13 @@
                     "attributes": {"class": "custom-tooltip"}
                 },
                 {
+                    "pitch": -8,                  // <-- ADD THIS HOTSPOT OBJECT
+                    "yaw": 245,                   // Exactly 35 degrees right of the info pin
+                    "type": "scene",
+                    "text": "Enter STEM / Makerspace",
+                    "sceneId": "stem_makerspace"   // Connects to the new scene config below
+                },
+                {
                     "pitch": -15,
                     "yaw": 10,
                     "type": "scene",
@@ -1008,6 +1015,13 @@
                     "type": "scene",
                     "text": "Go to Mr. Chinn's Classroom",
                     "sceneId": "mr_chinn"
+                },
+                {
+                    "pitch": -6,                  // <-- ADD THIS NEW HOTSPOT OBJECT
+                    "yaw": -165,                 // Exactly 15 degrees left of the Tudisco stairs link
+                    "type": "scene",
+                    "text": "Go to Growing Leaders Kitchen",
+                    "sceneId": "growing_leaders_kitchen"
                 }
             ]
         },
@@ -1579,8 +1593,51 @@
                     "type": "scene",
                     "text": "Go to Tudisco Hall Back",
                     "sceneId": "tudisco_hall_back" // Links to the back of the hallway
+                },
+                {
+                    "pitch": -3,
+                    "yaw": 205,                     // Straight up the stairs
+                    "type": "scene",
+                    "text": "Go Down",
+                    "sceneId": "path" // Links to the back of the hallway
                 }
             ] // Leaving this empty for now as requested
+        },
+        "stem_makerspace": {
+            "title": "STEM / Makerspace Room",
+            "keywords": ["stem", "makerspace", "computer lab", "design", "inside", "rivera"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "makerspace.JPG", // Ensure this filename matches your raw panoramic asset
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180,                   // Turn completely around to face the double exit doors
+                    "type": "scene",
+                    "text": "Exit to Upper Courtyard",
+                    "sceneId": "upper"            // Links cleanly back outside
+                }
+            ]
+        },
+        "growing_leaders_kitchen": {
+            "title": "Growing Leaders Kitchen",
+            "keywords": ["kitchen", "growing leaders", "cooking", "inside", "room"],
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "kitchen.JPG", // Make sure this matches your image asset filename exactly
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": 180,                   // Spin entirely around to exit out the door
+                    "type": "scene",
+                    "text": "Exit to Lower Level Middle Hallway",
+                    "sceneId": "lower_level_middle" // Links seamlessly right back into the hall
+                }
+            ]
         }
     };
     
@@ -1599,20 +1656,24 @@
 
     // --- INITIALIZE PANNELLUM ---
     // WebGL Patch: Forces Chromebooks to allocate memory efficiently for large textures
+    // --- INITIALIZE PANNELLUM ---
+    // WebGL Patch: Forces Chromebooks to allocate memory efficiently for large textures
     const canvas = document.createElement('canvas');
     const gl = canvas.getContext('webgl', { powerPreference: "high-performance", failIfMajorPerformanceCaveat: false });
-   // --- INITIALIZE PANNELLUM ---
+
     const viewer = pannellum.viewer('panorama', {
         "default": {
             "firstScene": "telegraph_corner",
             "author": "Jaap_Jaiden_Andres",
-            "sceneFadeDuration": 900,
+            "sceneFadeDuration": 400,    // Snappy transitions help clear memory buffers faster
             "autoLoad": true,
             "compass": true,
             "showControls": false, 
-            "cubeMapZoom": 1, // <-- PASTE RIGHT HERE FOR RADICAL INSTANT LOADING
-            "updateInterval": 10, // <-- ADD THIS: Forces faster canvas render cycles on ChromeOS
-            "defaultPitch": 0,    // <-- ADD THIS TO LEVEL THE HORIZON
+            "cubeMapZoom": 1, 
+            "updateInterval": 10,
+            "dynamicMaxHfov": true,      // <-- ADD THIS: Crucial for stopping ChromeOS canvas memory crashes
+            "multiResMinHfov": 110,      // <-- ADD THIS: Prevents over-allocating VRAM on low-end hardware
+            "defaultPitch": 0,    
             "defaultYaw": 0
         },
         "scenes": siteScenes
