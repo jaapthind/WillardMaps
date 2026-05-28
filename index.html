@@ -1876,23 +1876,32 @@ viewer.on('scenetchanging', function(targetSceneId) {
 });
 
 // --- ONE-TIME WELCOME POPUP MODAL ---
-viewer.on('load', function() {
-    // Check local storage to see if the user has already seen the intro popup
-    if (!localStorage.getItem('willard_maps_intro_seen')) {
-        // Wait a brief moment after the intro splash screen fades out to display instructions
-        setTimeout(() => {
-            openLiquidModal(
-                "🗺️ HOW TO NAVIGATE WILLARD MAPS", 
-                "Welcome! Here is how to explore our campus:<br><br>" +
-                "• <b>Look Around:</b> Click and drag (or swipe) across the screen to look in any direction.<br>" +
-                "• <b>Move to New Areas:</b> Click on floating white arrows or text markers to move down hallways and through doors.<br>" +
-                "• <b>Search instantly:</b> Type a room number, sector, or teacher's name into the search bar at the top to go right there."
-            );
-            // Flag in local storage so it won't pop up again on subsequent page refreshes
-            localStorage.setItem('willard_maps_intro_seen', 'true');
-        }, 2200); 
+
+    // --- ONE-TIME NAVIGATION WELCOME POPUP ---
+let isFirstSceneLoad = true;
+
+viewer.on('scenechange', function() {
+    // Only execute on the very first scene that mounts
+    if (isFirstSceneLoad) {
+        isFirstSceneLoad = false; // Immediately disable so future scene changes skip this block
+
+        // Check if the user has already seen this tutorial in a previous browser session
+        if (!localStorage.getItem('willard_maps_intro_seen')) {
+            // 2200ms delay perfectly aligns it to slide in right after the rainbow splash screen fades out completely
+            setTimeout(() => {
+                openLiquidModal(
+                    "🗺️ HOW TO NAVIGATE WILLARD MAPS", 
+                    "Welcome! Here is how to explore our campus:<br><br>" +
+                    "• <b>Look Around:</b> Click and drag (or swipe) across the screen to look in any direction.<br>" +
+                    "• <b>Move to New Areas:</b> Click on floating white arrows or text markers to move down hallways and through doors.<br>" +
+                    "• <b>Search instantly:</b> Type a room number, sector, or teacher's name into the search bar at the top to go right there."
+                );
+                // Remember selection so it doesn't interrupt them next time they visit the site
+                localStorage.setItem('willard_maps_intro_seen', 'true');
+            }, 2200);
+        }
     }
-}, { once: true }); // Attaches cleanly to the initial application load hook
+});
 
 </script>
 </body>
