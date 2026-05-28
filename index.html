@@ -1640,6 +1640,29 @@
             ]
         }
     };
+
+    // --- BULLETPROOF FILENAME & EXTENSION PATCH ---
+// Forces all filenames to cleanly link to their '_min_min.jpg' equivalents
+for (const sceneId in siteScenes) {
+    let pano = siteScenes[sceneId].panorama;
+    if (pano) {
+        // Strip out any existing timestamp query strings if present (?t=...)
+        let cleanPano = pano.split('?')[0];
+        
+        // Find the file extension (.jpg or .JPG)
+        let lastDotIndex = cleanPano.lastIndexOf('.');
+        if (lastDotIndex !== -1) {
+            let baseName = cleanPano.substring(0, lastDotIndex);
+            
+            // Check if '_min_min' is already part of the string name
+            if (!baseName.endsWith('_min_min')) {
+                siteScenes[sceneId].panorama = baseName + '_min_min.jpg';
+            } else {
+                siteScenes[sceneId].panorama = baseName + '.jpg';
+            }
+        }
+    }
+}
     
     const sceneExpectations = {
         "upper": "explanation placeholder.",
